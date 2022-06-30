@@ -4,10 +4,10 @@
     "version": "1.0",
     "options_page": "options.html",
     "manifest_version": 3,
-    "background": {
-        "service_worker": "background.js"
+    "background.service_worker": {
+        "scripts": ["background.js"]
     },
-    "permissions": ["storage", "activeTab", "scripting"],
+    "permissions": ["storage", "activeTab", "scripting", "input", "tabs"],
     "action": {
         "default_popup": "popup.html",
         "default_icon": {

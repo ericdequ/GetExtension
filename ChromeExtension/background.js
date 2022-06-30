@@ -1,8 +1,11 @@
-// background.js
-
-let color = '#3aa757';
-
-chrome.runtime.onInstalled.addListener(() => {
-    chrome.storage.sync.set({ color });
-    console.log('Default background color set to %cgreen', `color: ${color}`);
-});
+document.onmouseup = function() {
+    chrome.tabs.getCurrent(function(_tabId) {
+        if (_tabId) {
+            var _SELECTION = {};
+            _SELECTION[tabId] = window.getSelection().toString();
+            chrome.storage.local.set(_SELECTION, function() {
+                console.log('Selection saved: ', _SELECTION[tabId]);
+            });
+        }
+    });
+};

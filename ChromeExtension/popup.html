@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html>
 
+<head>
+    <link rel="stylesheet" type="text/css" href="popup.css" />
+</head>
+
 <body>
-
-    <h1>Type Term to GET definition</h1>
-
-    <form action="welcome.php" method="post">
-        Term: <input type="text" name="name">
-        <input type="submit">
-    </form>
-    <p>GET IT!</p>
+    <div class="wrap">
+        <h1>G.E.T. IT</h1>
+        <form id="replacely-form">
+            <input type="text" id="search" required class="text-box" placeholder="Search" />
+            <button class="btn" type="submit" onclick="myFunction()">
+                <span>GET TERM</span>
+            </button>
+        </form>
+        <script src="popup.js"></script>
 </body>
 
 </html>
