@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html>
-
+    <head> 
+        <link rel="stylesheet" href="popup.css">
+    </head>
 <body>
+    <div class="term-search-window">
+        <h1>Type Term to GET definition</h1>
+        Term: <input type="text" name="name" id="term">
+        <button id="getButton" type="button">GET IT</button>
+        <p class="error"></p>
+        <h3 id="received-input"></h3>
+        <div class="result-wrapper"></div>
+    </div>
 
-    <h1>Type Term to GET definition</h1>
-
-    <form action="welcome.php" method="post">
-        Term: <input type="text" name="name">
-        <input type="submit">
-    </form>
-    <p>GET IT!</p>
+    <script src="popup.js"></script>
 </body>
 
 </html>

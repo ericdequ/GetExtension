@@ -1,0 +1,32 @@
+button {
+    height: 50px;
+    width: auto;
+    outline: none;
+    margin: 10px;
+    background-color: #add8e6;
+    border: solid 1px black;
+    border-radius: 2px;
+}
+
+button.current {
+    box-shadow: 0 0 0 2px white, 0 0 0 4px black;
+}
+.term-result-window {
+    padding: 10px;
+}
+.term-result {
+    font-size: 14px;
+    font-weight: bold;
+    color: black;
+}
+.term-definition {
+     font-size: 10px;
+     font-weight: light;
+     color: #a9a9a9;
+     padding-bottom: 5px;
+}
+.term-standard-organization {
+    font-size: 10px;
+    font-weight: bold;
+    color: black;
+}
