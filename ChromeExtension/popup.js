@@ -6,10 +6,10 @@ getButton.addEventListener("click", () => {
     let search_query = document.getElementById("term").value;
     if (search_query.length == 0)
     {
-        document.getElementsByClassName("error")[0].innerHTML = "The text field cannot be empty";
+        //Literally do nothing
+
     }
     else {
-        document.getElementsByClassName("error")[0].innerHTML = "";
         let sent = chrome.runtime.sendMessage({
             searchTerm: search_query,
         })

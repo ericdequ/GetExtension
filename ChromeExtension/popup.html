@@ -3,14 +3,17 @@
     <head> 
         <link rel="stylesheet" href="popup.css">
     </head>
-<body>
+<body class="">
     <div class="term-search-window">
-        <h1>Type Term to GET definition</h1>
+        <h1 class="header"> GET </h1>
         Term: <input type="text" name="name" id="term">
         <button id="getButton" type="button">GET IT</button>
-        <p class="error"></p>
-        <h3 id="received-input"></h3>
-        <div class="result-wrapper"></div>
+        <!--<p class="error"></p>-->
+        <div class="result-wrapper">
+            <h2 class="no-results-header">No Results</h2>
+            <hr></hr>
+            <div class="search-site-prompt">Search on website? <a href="fake-website.org">Click Here</a></div>
+        </div>
     </div>
 
     <script src="popup.js"></script>
