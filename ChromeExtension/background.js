@@ -1,23 +1,45 @@
 // background.js
-//Extracting to async await function fetchTermDefinition cuz chrome is iffy
+
+//Heres a rundown of how background.js's Search Functionality Works
+/**
+ * 1. popup.js sends a message to backgroundjs, including the term to be searched
+ * 2. background.js receives the message and handles it by doing something, in this case fetching the definition via fetchTermDefinition
+ * 3. fetchTermDefinition makes a request to the server that handles our JSON database, when the server responds, fetchTermDefinition returns this data.
+ * 4. fetchTermDefinition should also take care of any parsing/string manipulation, unless the server does that for us
+ * 4. handleMessage takes the return value of fetchTermDefinition and sends it back to popup.js, which is tasked with putting the data on screen
+ */
+
+//Listens for when popup.js sends a message
+chrome.runtime.onMessage.addListener(handleMessage);
+
+/**
+ * 
+ * @param {object {searchTerm: string}} request an object containing a search term and in the future any other information necessary (like filters/categories/specific standards org) to narrow the search
+ * @param {Some odd Object thing} sender stuff relating to the original sender, popup.js
+ * @param {Callback Func} sendResponse Sends a response back to the original message sender, in this case popup.js
+ * @returns true to let chrome know the function is asynchronous
+ */
 const handleMessage = (request, sender, sendResponse) => {
     
     fetchTermDefinition(request.searchTerm).then((termObj) =>
     sendResponse({term : termObj.term, definition: termObj.definition, standards: termObj.standards}));
-    return true;
+    return true; //This "return true" is used to let chrome know that this is an async function
 }
 
-//This is where the fancy stuff is supposed to happen
+/**
+ * @function fetchTermDefinition
+ * @param {string} search_term The term to be searched for
+ * @returns {object} An object containing the searched term, the definition obtained from the db, and the standards organization that provided this definition
+ */
 const fetchTermDefinition = async (search_term) => {
 
-    //Now, search_term should be appropriately parsed to perform definition search;
-    //someParsingFunction(search_term)
+    ///search_term is sanitized into a format appropriate for the a url to be used in fetch()
+    //someSanitizationFunction(search_term)
 
-    //Here, we format our http request and use the native Fetch api to hand off all of the heavy processing and search to an external server
     //Since we dont have a server yet, I am using the pokemon api as an example.
-     const data = await fetch("https://pokeapi.co/api/v2/pokemon/pidgey")
-     const pokemon = await data.json();
-     console.log(pokemon.base_experience);
+     const data = await fetch("https://pokeapi.co/api/v2/pokemon/pidgey") // async functionality example (fetching from pokemon database)
+     const pokemon = await data.json(); //Wait for data to be jsonified
+     console.log(pokemon.base_experience); //Print out data as example
 
 
 
@@ -25,4 +47,10 @@ const fetchTermDefinition = async (search_term) => {
     return {term: search_term, definition: "Some fake definition", standards: "NIST probably"};
 }
 
-chrome.runtime.onMessage.addListener(handleMessage);
+/**
+ * For a term
+ * https://csrc.nist.gov/glossary/term/jamming
+ * For a search
+ * https://csrc.nist.gov/glossary?keywords-sm=Shlang&sortBy-sm=relevance&ipp-sm=100
+ * 
+ */
