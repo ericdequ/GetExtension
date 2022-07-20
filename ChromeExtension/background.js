@@ -52,5 +52,9 @@ const fetchTermDefinition = async (search_term) => {
  * https://csrc.nist.gov/glossary/term/jamming
  * For a search
  * https://csrc.nist.gov/glossary?keywords-sm=Shlang&sortBy-sm=relevance&ipp-sm=100
- * 
+ * where ? signifies the start of query
+ * ipp-sm = limit
+ * keywords = search term
+ * sortBy= sorting method
+ * glossary = just the directory for the glossary
  */
