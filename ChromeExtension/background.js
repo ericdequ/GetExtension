@@ -9,8 +9,6 @@
  * 4. handleMessage takes the return value of fetchTermDefinition and sends it back to popup.js, which is tasked with putting the data on screen
  */
 
-//Listens for when popup.js sends a message
-chrome.runtime.onMessage.addListener(handleMessage);
 
 /**
  * 
@@ -22,7 +20,7 @@ chrome.runtime.onMessage.addListener(handleMessage);
 const handleMessage = (request, sender, sendResponse) => {
     
     fetchTermDefinition(request.searchTerm).then((termObj) =>
-    sendResponse({term : termObj.term, definition: termObj.definition, standards: termObj.standards}));
+    sendResponse(termObj));
     return true; //This "return true" is used to let chrome know that this is an async function
 }
 
@@ -35,16 +33,17 @@ const fetchTermDefinition = async (search_term) => {
 
     ///search_term is sanitized into a format appropriate for the a url to be used in fetch()
     //someSanitizationFunction(search_term)
-
+    const page = 1;
+    const sanitizedSearchTerm = encodeURIComponent(search_term);
     //Since we dont have a server yet, I am using the pokemon api as an example.
-     const data = await fetch("https://pokeapi.co/api/v2/pokemon/pidgey") // async functionality example (fetching from pokemon database)
-     const pokemon = await data.json(); //Wait for data to be jsonified
-     console.log(pokemon.base_experience); //Print out data as example
+     const data = await fetch("https://safe-scrubland-62212.herokuapp.com/glossary?term=" + sanitizedSearchTerm + "&page=" + page) // async functionality example (fetching from pokemon database)
+     const result = await data.json(); //Wait for data to be jsonified
 
 
 
-    //Placeholder return since we dont have a db yet
-    return {term: search_term, definition: "Some fake definition", standards: "NIST probably"};
+
+    //Return data obtained
+    return result;
 }
 
 /**
@@ -58,3 +57,6 @@ const fetchTermDefinition = async (search_term) => {
  * sortBy= sorting method
  * glossary = just the directory for the glossary
  */
+
+//Listens for when popup.js sends a message
+chrome.runtime.onMessage.addListener(handleMessage);
