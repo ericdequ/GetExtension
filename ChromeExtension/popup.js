@@ -21,7 +21,8 @@ getButton.addEventListener("click", () => {
 const handleResponse = async (message) => {
     //Message should include the term, definition, and standards organization
     //Object destructuring
-    let term = message.term;
+    console.log(message);
+    /**let term = message.term;
     let definition = message.definition;
     let standards = message.standards;
     //The definition of the search term and the term itself are now displayed
@@ -41,7 +42,7 @@ const handleResponse = async (message) => {
             ${standards}
         </div>
     </div> 
-    `
+    `*/
 }
 const handleError = (err) => {
     console.log("Error ocurred: " + err);
