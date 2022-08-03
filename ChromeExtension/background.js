@@ -37,7 +37,7 @@ const fetchTermDefinition = async (search_term) => {
     const page = 1;
     const sanitizedSearchTerm = encodeURIComponent(search_term);
     //Since we dont have a server yet, I am using the pokemon api as an example.
-     const data = await fetch("https://safe-scrubland-62212.herokuapp.com/glossary?term=" + sanitizedSearchTerm) // async functionality example (fetching from pokemon database)
+     const data = await fetch("https://get-server-prod.herokuapp.com/glossary?term=" + sanitizedSearchTerm) // async functionality example (fetching from pokemon database)
      const result = await data.json(); //Wait for data to be jsonified
 
 
