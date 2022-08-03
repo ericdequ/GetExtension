@@ -18,7 +18,6 @@
  * @returns true to let chrome know the function is asynchronous
  */
 const handleMessage = (request, sender, sendResponse) => {
-    
     fetchTermDefinition(request.searchTerm).then((termObj) =>
     sendResponse(termObj));
     return true; //This "return true" is used to let chrome know that this is an async function
@@ -42,12 +41,10 @@ const fetchTermDefinition = async (search_term) => {
 
 
 
-
     //Return data obtained
     return result;
 }
-
-/**
+/** 
  * For a term
  * https://csrc.nist.gov/glossary/term/jamming
  * For a search
