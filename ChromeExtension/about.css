@@ -1,5 +1,5 @@
 .logo{
-    background-image: url("/images/background-gif.gif");
+    background-image: url("images/background-gif.gif");
     background-position: top;
     height: 225px
     /*url for background-gif.gif changed to reflect new folder it's in, which is the images folder in GetExtension*/

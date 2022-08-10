@@ -19,7 +19,7 @@ const constructPagination = (current_page, total_pages) => {
         <div class="pagination_element" id="pagination">
             <div id="prev_page" class="pagination_left"><img class="chevron_pagi" src="images/chevron-left-solid.png"></div>
             <div class="pagination_page">
-                <div id="current_page">${current_page}</div>
+                <input id="current_page" value="${current_page}"/>
                 <div class="slash">/</div>
                 <div id="total_pages">${total_pages}</div>
             </div>
@@ -31,12 +31,18 @@ const constructPagination = (current_page, total_pages) => {
 
     const prev_page = document.getElementById('prev_page');
     const next_page = document.getElementById('next_page');
+    const current_page_input = document.getElementById('current_page')
+
 
     next_page.addEventListener('click', () => {
         handleNextPage();
     })
     prev_page.addEventListener('click', () => {
         handlePrevPage();
+    })
+    current_page_input.addEventListener('keydown', (e) => {
+        if (e.key === "Enter")
+            handleGetPage(parseInt(e.target.value));
     })
 }
 
@@ -98,6 +104,20 @@ const getSearchOptions = async () => {
             resolve(result.search_options)
         })
     })
+}
+const handleGetPage = async (desired_page) => {
+    if ( !Number.isInteger(desired_page) || desired_page > total_pages || desired_page < 1)
+        return null;
+    current_page = desired_page;
+    if (current_search.length > 0)
+    {
+        let sent = chrome.runtime.sendMessage({
+            searchTerm: current_search,
+            page: current_page,
+            results_per_page: 3
+        })
+        sent.then(handleResponse, handleError)
+    }
 }
 const handleNextPage = async () => {
     if (current_page + 1 > total_pages)

@@ -105,17 +105,20 @@ hr {
     height: 30px;
     min-width: 50px;
     background-color: grey;
-    border: 1px solid white;
     border-radius: 5px;
+    border: 1px solid white;
     color: white;
   }
-  #current_page {
+  input#current_page {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 30px;
-    min-width: 50px;
+    width: 50px;
     background-color: white;
     border-radius: 5px;
+    border: 1px solid black;
+    text-align: center;
     color: black;
+    padding: 0px;
   }
