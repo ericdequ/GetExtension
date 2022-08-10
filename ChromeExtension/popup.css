@@ -19,7 +19,7 @@ body {
 button.current {
     box-shadow: 0 0 0 2px white, 0 0 0 4px black;
 }
-.term-result-window {
+.term-result-window-0, .term-result-window-1, .term-result-window-2 {
     padding: 10px;
     width: 80%;
     height: auto;
@@ -57,5 +57,51 @@ hr {
     width: 100%;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    min-height: 200px;
 }
+.pagination_element {
+    display: flex;
+    flex-direction: row;
+    column-gap: 15px;
+    font-size: 15px;
+    justify-content: center;
+    align-items: center;
+  }
+  .flex-center {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    justify-self: flex-end;
+  }
+  .pagination_page {
+    display: flex;
+    flex-direction: row;
+    column-gap: 5px;
+  }
+  .chevron_pagi {
+    height: 20px;
+  }
+  .slash {
+    font-size: 30px;
+  }
+  #total_pages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    min-width: 50px;
+    background-color: grey;
+    border: 1px solid white;
+    border-radius: 5px;
+    color: white;
+  }
+  #current_page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    min-width: 50px;
+    background-color: white;
+    border-radius: 5px;
+    color: black;
+  }

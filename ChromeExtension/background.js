@@ -18,7 +18,7 @@
  * @returns true to let chrome know the function is asynchronous
  */
 const handleMessage = (request, sender, sendResponse) => {
-    fetchTermDefinition(request.searchTerm).then((termObj) =>
+    fetchTermDefinition(request.searchTerm, request.page, request.results_per_page).then((termObj) =>
     sendResponse(termObj));
     return true; //This "return true" is used to let chrome know that this is an async function
 }
@@ -26,23 +26,27 @@ const handleMessage = (request, sender, sendResponse) => {
 /**
  * @function fetchTermDefinition
  * @param {string} search_term The term to be searched for
+ * @param {int} page The page of results you are trying to obtain -
+ * @param {int} results_per_page The maximum amount of results you want to show up per page
  * @returns {object} An object containing the searched term, the definition obtained from the db, and the standards organization that provided this definition
  */
-const fetchTermDefinition = async (search_term) => {
+const fetchTermDefinition = async (search_term, page, results_per_page) => {
 
     ///search_term is sanitized into a format appropriate for the a url to be used in fetch()
     //someSanitizationFunction(search_term)
-    console.log("EVEN MORE EPIC");
-    const page = 1;
     const sanitizedSearchTerm = encodeURIComponent(search_term);
     //Since we dont have a server yet, I am using the pokemon api as an example.
-     const data = await fetch("https://get-server-prod.herokuapp.com/glossary?term=" + sanitizedSearchTerm) // async functionality example (fetching from pokemon database)
-     const result = await data.json(); //Wait for data to be jsonified
-
-
-
+     const data = await fetch("https://get-server-prod.herokuapp.com/glossary?term=" + sanitizedSearchTerm + '&results_per_page=' + results_per_page + '&page=' + page) // async functionality example (fetching from pokemon database)
+     const terms = await data.json(); //Wait for data to be jsonified
+     let total_pages = await fetch("https://get-server-prod.herokuapp.com/glossary/collectionsize?collection_alias=glossary&search_term=" + sanitizedSearchTerm);
+     total_pages = await total_pages.json();
+     console.log(terms);
+    const responseObj = {
+        total_pages: Math.floor(total_pages.totalElements/3) + 1,
+        results: terms
+    }
     //Return data obtained
-    return result;
+    return responseObj;
 }
 /** 
  * For a term
