@@ -2,14 +2,61 @@ let current_page = null; //null when no search performed
 let total_pages = null; //null when no search performed
 let currentItems = []; //Empty Object 
 let current_search = null;
+let current_item = null;
 const previous_page = null;
 //Watch this gameplay
 const constructResultsNotFoundComponent = () => {
-
+    document.getElementsByClassName('no-results-wrapper')[0].innerHTML='';
+    if (current_page != total_pages || current_item)
+        return //Literally do nothing if these two conditions are not met
+    let noResultsComponent = `
+        <h2 class="no-results-header">No Results</h2>
+        <hr></hr>
+        <div class="search-site-prompt">Search on website? <a href="index.html">Click Here</a></div>
+        `;
+    document.getElementsByClassName('no-results-wrapper')[0].innerHTML=noResultsComponent;
+    
 }
 const handleDeployTermPage = (current_term) => {
+    current_item = current_term;
+    //First, remember to nuke both pagination and term results
+    document.getElementsByClassName('result-wrapper')[0].innerHTML = '';
+    document.getElementById('pagination').innerHTML = '';
+    constructResultsNotFoundComponent();
+    const buildAbbreviations = (abbrStrings) => {
+        const splitAbbreviations = abbrStrings.split(', ');
+        let abbrHTML = ''
+        //Gonna let Jesus take the wheel and pray no abbreviations make use of commas
+        splitAbbreviations.forEach((abbr) => {
+            abbrHTML += `<div class="term-page-abbr">${abbr}</div>`
+        })
+        return abbrHTML;
+    }
     //cache previous page, or at least the params that denote the previous page, and provide a page that focuses on term-related info
+    //Nevermind the params that denoted the previous page are stored as globals
     console.log('this runs with the term: ' + current_term.TITLE);
+    console.log(Object.keys(current_term));
+
+    const termPage = `
+    <div class="term-page">
+        <image src="images/xmark.png" id="quit-term-page"/>
+        <div class="term-page-title">${current_term.TITLE}</div>
+        <div class="term-page-description">${current_term.DESCRIPTION ? current_term.DESCRIPTION :  `None`}</div>
+        <div class="term-page-abbreviations">
+            <div class="term-page-abbr-header">Abbreviations / Stands For</div>
+            <div class="term-page-abbr-flex">${current_term.ABBREVIATIONS ? buildAbbreviations(current_term.ABBREVIATIONS) :  `<div class="term-page-abbr">None</div>`}</div>
+        </div>
+        <div class="term-page-sources">
+            <div class="term-page-source-header">Defined in: </div>
+            <div class="term-page-source-list">${current_term.SOURCE ? current_term.SOURCE : 'N/A'}</div>
+        </div>
+    </div>
+    `;
+    document.getElementsByClassName('result-wrapper')[0].innerHTML=termPage;
+    document.getElementById('quit-term-page').addEventListener('click', () => {
+        current_item = null;
+        constructPage(current_page, total_pages, currentItems)
+    });
 }
 const constructPagination = (current_page, total_pages) => {
     const paginationElement = document.getElementById('pagination');
@@ -52,7 +99,7 @@ const constructPage = (current_page, total_pages, page_items = []) => {
     //assume that page_items is an array of term objects
     page_items.map((term, index) => {
         let title = term.TITLE;
-        let definition_or_abbreviations = term.DEFINITION ? term.DEFINITION : term.ABBREVIATIONS;
+        let definition_or_abbreviations = term.DESCRIPTION ? (term.DESCRIPTION.length > 45 ? term.DESCRIPTION.substr(0,45)  + '...': term.DESCRIPTION) : term.ABBREVIATIONS;
         let standards = term.SOURCE ? term.SOURCE : "";
         // Identify each of the term windows with the index of the term, which then helps for setting event listeners on click
         document.getElementsByClassName("result-wrapper")[0].innerHTML += 
@@ -83,6 +130,10 @@ const constructPage = (current_page, total_pages, page_items = []) => {
     
     //Once event listeners are instantiated, then focus on pagination
     constructPagination(current_page, total_pages);
+    console.log(currentItems.length);
+    console.log(total_pages);
+    console.log(current_page);
+    constructResultsNotFoundComponent();
 }
 
 

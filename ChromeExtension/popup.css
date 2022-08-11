@@ -13,7 +13,7 @@ button {
   background-color: rgb(79, 173, 204);
 }
 body {
-  width: 300px;
+  width: 350px;
   min-height: 300px;
   max-height: 600px;
   overflow: auto;
@@ -23,42 +23,42 @@ body {
 button.current {
   box-shadow: 0 0 0 2px white, 0 0 0 4px black;
 }
-button {
-    height: 40px;
-    width: auto;
-    outline: none;
-    margin: 10px;
-    background-color: #add8e6;
-    border: solid 1px black;
-    border-radius: 2px;
-}
 
-.term-result-window-0, .term-result-window-1, .term-result-window-2 {
-    padding: 10px;
-    width: 80%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
+
+.term-result-window-0,
+.term-result-window-1,
+.term-result-window-2 {
+  background-color: #1a88ad;
+  padding: 10px;
+  width: 80%;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px grey;
 }
 .term-result {
-    font-size: 14px;
-    font-weight: bold;
-    color: black;
+  font-size: 16px;
+  font-weight: light;
+  color: white;
 }
 .term-definition {
-     font-size: 10px;
-     font-weight: light;
-     color: #a9a9a9;
-     padding-bottom: 5px;
+  font-size: 12px;
+  font-weight: light;
+  color: white;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 .term-standard-organization {
-    font-size: 10px;
-    font-weight: bold;
-    color: black;
+  font-size: 12px;
+  font-weight: light;
+  color: white;
+  margin-top: 5px;
 }
 .no-results-header {
-    margin-bottom: 2px;
-    margin: 0px;
+  margin-bottom: 2px;
+  margin: 0px;
 }
 hr {
     width: 90%;
@@ -71,7 +71,8 @@ hr {
     width: 100%;
     flex-direction: column;
     align-items: center;
-    min-height: 200px;
+    row-gap: 10px;
+    min-height: 300px;
 }
 .pagination_element {
     display: flex;
@@ -122,3 +123,97 @@ hr {
     color: black;
     padding: 0px;
   }
+.term-page {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 100%;
+  width: 100%;
+  transition: top 2s ease 0s; /* only transition top property */
+}
+.term-page.active {
+
+}
+.term-page-title {
+  padding-left: 10px;
+  padding-right: 45px;
+  font-size: 30px;
+  color: white;
+  font-weight: light;
+}
+.term-page-description {
+  margin-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 12px;
+  color: white;
+  font-weight: normal;
+}
+.term-page-sources {
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 16px;
+  color: white;
+  margin-top: 5px;
+}
+.term-page-abbr-header {
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+}
+.term-page-abbreviations {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  font-size: 16px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.term-page-abbr-flex {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  row-gap: 10px;
+  column-gap: 10px;
+}
+.term-page-abbr {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: white;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  width: auto;
+  display: flex;
+  color: black;
+}
+.term-page-source-header{
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+}
+.term-page-source-list {
+  font-size: 12px;
+  font-weight: normal;
+  margin-top: 5px;
+}
+#quit-term-page {
+  margin-top: 3px;
+  margin-right: 20px;
+  position: absolute;
+  align-self: flex-end;
+  justify-content: flex-end;
+  width: 20px;
+  height: auto;
+}
+.no-results-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}

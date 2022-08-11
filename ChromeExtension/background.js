@@ -31,7 +31,7 @@ const handleMessage = (request, sender, sendResponse) => {
  * @returns {object} An object containing the searched term, the definition obtained from the db, and the standards organization that provided this definition
  */
 const fetchTermDefinition = async (search_term, page, results_per_page) => {
-
+    
     ///search_term is sanitized into a format appropriate for the a url to be used in fetch()
     //someSanitizationFunction(search_term)
     const sanitizedSearchTerm = encodeURIComponent(search_term);
