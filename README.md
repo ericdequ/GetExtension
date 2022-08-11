@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/ericdequ/GetExtension">
-    <img src="images/ETLogo.png" alt="Logo">
+    <img src="images/ETLogo2.png" alt="Logo">
   </a>
 
   <h3 align="center">GET Extension</h3>
