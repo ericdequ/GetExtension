@@ -96,7 +96,7 @@ To close the window, just click anywhere else on the chrome browser!
 <!-- CONTRIBUTING -->
 ## Contributing
 
-We do not need people to contibute to the project at the moment, but if you are interested in being an admin, feel fee to reach out to us by email at (insert email here).
+We do not need people to contibute to the project at the moment, but if you are interested in being an admin, feel free to reach out to us by email at (insert email here).
 
 
 <!-- Authors -->
