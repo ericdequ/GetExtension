@@ -10,7 +10,7 @@
   <p align="center">
     A glossary for emerging tech terms!
     <br />
-    <a href="https://github.com/ericdequ/GetExtension"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/ericdequ/GetExtension"><strong>Find us on chrome web store! (coming soon) »</strong></a>
     <br />
     <br />
     <a href="#usage">View Demo</a>
@@ -29,9 +29,6 @@
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
@@ -41,9 +38,6 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#authors">Authors</a></li>
     <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
@@ -54,105 +48,70 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-In this section you should describe your project, including any datasets you used and appropriate citations. You may refer to your project report or cite your paper for more detailed information.
+The GET app, also known as the Glossary of Emerging Tech, is a revolutionary google chrome extension that allows users to quickly search for industry related acronyms. We realized the need for this software when we realized how inconsistent and potentially distracting that a regular search engine can be for finding industry specific terms.
 
-[Here goes the title with hyperlink](https://github.com/ericdequ/GetExtension)
-
-You can include tables or images to summarize your results when and if appropriate.
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-In this section you should provide instructions on how to use this repository to recreate your project locally.
 
 ### Dependencies
 
-Here, list all libraries, packages and other dependencies that need to be installed to run your project. Include library versions and how they should be installed if a special requirement is needed.
+We require that users use a current version of Google Chrome (version 88.0.4324 or upwards). This install of Google Chrome must also have JavaScript enabled. An internet connection is required to install the extension from the Chrome Web Store and also for searches to be processed.
 
-For example, this is how you would list them:
-* Transformers 4.8.0
-  ```sh
-  conda install -c conda-forge transformers
-  ```
-* OpenCV 4.5.2
-  ```sh
-  conda install -c conda-forge opencv
-  ```
-### Alternative: Export your Environment
-
-Alternatively, you can export your Python working environment, push it to your project's repository and allow users to clone it locally. This way, anyone can install it and they will have all dependencies needed. Here is how you export a copy of your Python environment:
-
-  ```sh
-  conda env export > requirements.yml
-  ```
-
-The user will be able to recreate it using:
-
-  ```sh
-  conda env create -f requirements.yml
-  ```
-
+  
 ### Installation
+We soon hope to be on the chrome web store but for now this is how we use the extension.
 
 1. Clone the repo
    ```sh
    git clone https://github.com/ericdequ/GetExtension.git
    ```
-2. Setup (and activate) your environment
-  ```sh
-  conda env create -f requirements.yml
-  ```
+2. Make sure you have developer mode enabled and "load unpacked" to install the extension!
 
 <!-- USAGE EXAMPLES -->
 ## Usage
+When a user first presses on the GET button on the toolbar, a menu similar to the one pictured below will load near to where you pressed the button.
+<p align="left">
+  <a href="https://github.com/ericdequ/GetExtension">
+    <img src="images/interface1.png" alt="Logo" width="200" height="300">
+  </a>
 
-Use this space to show useful examples of how a project can be used. For course projects, include which file to execute and the format of any input variables.
+The user must then type in the desired acronym they wish to search for and then press "GET IT". A list of items will populate the extension window. We are using term "access" for this demonstration.
 
-Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+<p align="left">
+  <a href="https://github.com/ericdequ/GetExtension">
+    <img src="images/interface2.png" alt="Logo" width="200" height="300">
+  </a>
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+The user must then press the term they are searching for and more information will appear on the term.
 
-<!-- ROADMAP -->
-## Roadmap
+<p align="left">
+  <a href="https://github.com/ericdequ/GetExtension">
+    <img src="images/interface3.png" alt="Logo" width="200" height="300">
+  </a>
 
-See the [open issues](https://github.com/ericdequ/GetExtension) for a list of proposed features (and known issues).
+To close the window, just click anywhere else on the chrome browser!
 
 <!-- CONTRIBUTING -->
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
+We do not need people to contibute to the project at the moment, but if you are interested in being an admin, feel fee to reach out to us by email at (insert email here).
 
 
 <!-- Authors -->
 ## Authors
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
-
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+This project was done entirely by SEI team at Emerging Tech LLC.
+ 
+(up to you guys if you want to list everyone individually).
 
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 
-You can acknowledge any individual, group, institution or service.
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Img Shields](https://shields.io)
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Pages](https://pages.github.com)
-* [Animate.css](https://daneden.github.io/animate.css)
-* [Loaders.css](https://connoratherton.com/loaders)
-* [Slick Carousel](https://kenwheeler.github.io/slick)
+* [Emerging Tech LLC](https://emergingtech.co/)
+* [Gaurav Seth](https://www.linkedin.com/in/sethgrv/)
+* [Shaylee Scott](https://www.linkedin.com/in/shaylee-scott/)
 
-## Thank you
+## Thank you!
