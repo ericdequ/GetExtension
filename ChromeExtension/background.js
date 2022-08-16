@@ -18,8 +18,14 @@
  * @returns true to let chrome know the function is asynchronous
  */
 const handleMessage = (request, sender, sendResponse) => {
-    fetchTermDefinition(request.searchTerm, request.page, request.results_per_page).then((termObj) =>
-    sendResponse(termObj));
+    if (request.type && request.type == 'highlight')
+        fetchHighlightDefinition(request.selected_text).then((termObj) => {
+            sendResponse(termObj);
+        });
+    else
+        fetchTermDefinition(request.searchTerm, request.page, request.results_per_page).then((termObj) =>
+        sendResponse(termObj)
+        );
     return true; //This "return true" is used to let chrome know that this is an async function
 }
 
@@ -46,6 +52,26 @@ const fetchTermDefinition = async (search_term, page, results_per_page) => {
         results: terms
     }
     //Return data obtained THERE WE GO
+    return responseObj;
+}
+const sanitizeSelectedText = (text) => {
+    //If string is hella long
+    text = text.substr(0, 30);
+    //If string has any funky characters
+    let almostSanitized = text.replace(/[^\w\s]/gi, '');
+    //Encode for use in URL
+    const fullySanitized = encodeURIComponent(almostSanitized);
+    
+    return fullySanitized;
+}
+const fetchHighlightDefinition = async (selected_text) => {
+    const sanitizedSearchTerm = sanitizeSelectedText(selected_text);
+    const data = await fetch("https://get-server-prod.herokuapp.com/glossary?=term" + sanitizedSearchTerm + '&results_per_page=1&page=1');
+    const term = await data.json();
+    
+    console.log(term);
+    const responseObj = term;
+    
     return responseObj;
 }
 /** 
