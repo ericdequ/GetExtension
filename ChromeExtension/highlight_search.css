@@ -1,0 +1,128 @@
+.fake-popup-container {
+    z-index: 1000000;
+    top: 0px;
+    position: fixed !important;
+    display: flex;
+    height: auto;
+    width: 100%;
+    background-color: transparent;
+    justify-content: flex-end;
+    padding-right: 20px;
+}
+* {
+    font-family: "Inter", sans-serif;
+  }
+  .teal-background {
+    width: 400px;
+    height: 630px;
+    background-color: rgb(40, 182, 230);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .pagination-group {
+    display: flex;
+    justify-self: flex-end;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    height: 50px;
+    column-gap: 15px;
+  }
+  .white-overlay {
+    background-color: white;
+    background-image: url('chrome-extension://__MSG_@@extension_id__/images/hexagons.png');
+    background-repeat: no-repeat;
+    background-size: 400px 530px;
+    border-radius: 10px;
+    height: 530px;
+    box-shadow: 0px 4px rgba(0, 0, 0, 0.25);
+  }
+  .term-fake-page {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto;
+  }
+  .term-fake-page-title {
+    margin-top: 40px;
+    margin-bottom: 0px;
+    font-size: 36px;
+    font-weight: bold;
+    padding: 10px;
+  }
+  
+  .term-fake-page-description {
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px;
+    padding-right: 50px;
+  }
+  .term-fake-page-sources {
+    font-size: 18px;
+    font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    padding: 5px;
+    padding-left: 10px;
+    text-decoration: underline;
+    color: blue;
+    font-weight: light;
+  }
+  .term-fake-page-abbreviations {
+    margin-top: 20px;
+    width: 100%;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  .term-fake-page-abbr-header {
+    padding-left: 10px;
+  }
+  .term-page-abbr-flex {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 10px;
+  }
+  .term-page-abbr {
+    text-align: center;
+    color: white;
+    min-width: 40px;
+    padding: 7px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: teal;
+    border-radius: 7px;
+    background: linear-gradient(
+      274deg,
+      rgba(67, 151, 180, 1) 0%,
+      rgba(175, 203, 181, 1) 100%
+    );
+  }
+  #prev-page-button,
+  #next-page-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    font-size: 20px;
+    color: white;
+    padding: 10px;
+    background-color: #9cd4e7;
+    border-radius: 5px;
+  }
+  #page-input {
+    font-size: 20px;
+    background-color: white;
+    width: 60px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  

@@ -4,6 +4,10 @@
     "version": "1.0",
     "options_page": "options.html",
     "manifest_version": 3,
+    "web_accessible_resources": [{
+        "matches": ["<all_urls>"],
+        "resources": ["images/hexagons.png"]
+    }],
     "background": {
         "service_worker": "background.js"
     },
@@ -26,6 +30,7 @@
     "content_scripts" : [
         {
             "matches": ["http://*/*", "https://*/*"],
+            "css": ["highlight_search.css"],
             "js": ["highlight_search.js"]    
         }
     ],

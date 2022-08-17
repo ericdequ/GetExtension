@@ -146,7 +146,7 @@ const getSearchOptions = async () => {
             {
                 //These are the default settings. Right now, just results_per_page
                 const default_search_options = {
-                    results_per_page: 5,
+                    results_per_page: 3,
                 }
                 return chrome.storage.local.set({ 'search_options': JSON.stringify(default_search_options) }, async () => {
                     resolve(default_search_options)

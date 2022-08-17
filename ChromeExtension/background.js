@@ -66,7 +66,7 @@ const sanitizeSelectedText = (text) => {
 }
 const fetchHighlightDefinition = async (selected_text) => {
     const sanitizedSearchTerm = sanitizeSelectedText(selected_text);
-    const data = await fetch("https://get-server-prod.herokuapp.com/glossary?=term" + sanitizedSearchTerm + '&results_per_page=1&page=1');
+    const data = await fetch("https://get-server-prod.herokuapp.com/glossary?term=" + sanitizedSearchTerm + '&results_per_page=3&page=1');
     const term = await data.json();
     
     console.log(term);
