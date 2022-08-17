@@ -25,9 +25,7 @@ button.current {
 }
 
 
-.term-result-window-0,
-.term-result-window-1,
-.term-result-window-2 {
+.term-result-window {
   background-color: #1a88ad;
   padding: 10px;
   width: 80%;

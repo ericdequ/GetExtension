@@ -22,7 +22,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 const fetchAcronymApi = async (search_term) => {
 
     let results = [];
-    let xmlDoc = await fetch('http://acronyms.silmaril.ie/cgi-bin/xaa?api');
+    let xmlDoc = await fetch('http://acronyms.silmaril.ie/cgi-bin/xaa?' + encodeURIComponent(search_term));
     xmlDoc = await xmlDoc.text();
     let parser = new DOMParser();
     xmlDoc = parser.parseFromString(xmlDoc, 'text/xml');
@@ -136,7 +136,7 @@ const constructPage = (current_page, total_pages, page_items = []) => {
         // Identify each of the term windows with the index of the term, which then helps for setting event listeners on click
         document.getElementsByClassName("result-wrapper")[0].innerHTML += 
         `
-        <div class="term-result-window-${index}"> 
+        <div class="term-result-window"> 
             <div class="term-result">
                 ${title}
             </div>
@@ -154,7 +154,7 @@ const constructPage = (current_page, total_pages, page_items = []) => {
     //Once all results have been put into DOM, assign event listeners to each that detect the click and perform the corresponding action
 
     page_items.forEach((term, index) => {
-        const termButton = document.getElementsByClassName(`term-result-window-${index}`)[0];
+        const termButton = document.getElementsByClassName(`term-result-window`)[index];
         termButton.addEventListener('click', () => {
             handleDeployTermPage(term)
         })
