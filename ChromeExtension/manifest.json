@@ -6,7 +6,7 @@
     "manifest_version": 3,
     "web_accessible_resources": [{
         "matches": ["<all_urls>"],
-        "resources": ["images/hexagons.png"]
+        "resources": ["/images/hexagons.png", "/images/ETSVG.png"]
     }],
     "background": {
         "service_worker": "background.js"

@@ -1,3 +1,16 @@
+.ET-logo {
+  background-image: url('chrome-extension://__MSG_@@extension_id__/images/ETSVG.png');
+  background-size: cover;
+  height: 30px;
+  width: 60px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.grow-please {
+  display: flex;
+  flex-grow: 100;
+  height: 500px;
+}
 .fake-popup-container {
     z-index: 1000000;
     top: 0px;
@@ -12,9 +25,28 @@
 * {
     font-family: "Inter", sans-serif;
   }
+  .teal-background-2 {
+    background-color: rgb(40, 182, 230);
+    padding: 10px;
+    border-radius: 5px;
+  }
+  .white-overlay-2 {
+    background-color: white;
+    padding: 10px;
+    background-image: url('chrome-extension://__MSG_@@extension_id__/images/hexagons.png');
+    background-repeat: no-repeat;
+  }
+  .term-fake-page-title-2 {
+    color: black;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 32px;
+    font-weight: bold;
+    padding: 10px;
+  }
   .teal-background {
     width: 400px;
-    height: 630px;
+    height: 520px;
     background-color: rgb(40, 182, 230);
     padding: 10px;
     display: flex;
@@ -22,6 +54,7 @@
     justify-content: space-between;
   }
   .pagination-group {
+    margin-top: 5px;
     display: flex;
     justify-self: flex-end;
     align-items: center;
@@ -34,7 +67,7 @@
     background-color: white;
     background-image: url('chrome-extension://__MSG_@@extension_id__/images/hexagons.png');
     background-repeat: no-repeat;
-    background-size: 400px 530px;
+    background-size: 400px 460px;
     border-radius: 10px;
     height: 530px;
     box-shadow: 0px 4px rgba(0, 0, 0, 0.25);
@@ -47,21 +80,23 @@
     overflow-y: auto;
   }
   .term-fake-page-title {
-    margin-top: 40px;
+    color: black;
+    margin-top: 10px;
     margin-bottom: 0px;
-    font-size: 36px;
+    font-size: 32px;
     font-weight: bold;
     padding: 10px;
   }
   
   .term-fake-page-description {
-    font-size: 18px;
+    font-size: 14px;
+    color: black;
     font-weight: 500;
     padding: 10px;
     padding-right: 50px;
   }
   .term-fake-page-sources {
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 400;
     display: flex;
     flex-direction: column;
@@ -76,9 +111,10 @@
     margin-top: 20px;
     width: 100%;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 14px;
   }
   .term-fake-page-abbr-header {
+    color: black;
     padding-left: 10px;
   }
   .term-page-abbr-flex {
@@ -109,20 +145,21 @@
     align-items: center;
     justify-content: center;
     width: 60px;
-    font-size: 20px;
+    font-size: 16px;
     color: white;
-    padding: 10px;
+    padding: 5px;
     background-color: #9cd4e7;
     border-radius: 5px;
   }
   #page-input {
-    font-size: 20px;
+    color: black;
+    font-size: 16px;
     background-color: white;
     width: 60px;
     align-items: center;
     justify-content: center;
     display: flex;
-    padding: 10px;
+    padding: 5px;
     border-radius: 5px;
   }
   
