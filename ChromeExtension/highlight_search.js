@@ -33,7 +33,7 @@ let getText = (e) => {
 const handleRemoveFakePopup = () => {
   current_page = null;
   currentItems = [];
-  document.getElementsByClassName('fake-popup-container').innerHTML= "";
+  document.getElementsByClassName('fake-popup-container')[0].innerHTML= "";
 }
 const navigateDefinitionsPopup = (term) => {
     //animate out contents and animate in new contents
