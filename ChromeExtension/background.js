@@ -1,15 +1,20 @@
 // background.js
 
-//Heres a rundown of how background.js's Search Functionality Works
-/**
- * 1. popup.js sends a message to backgroundjs, including the term to be searched
- * 2. background.js receives the message and handles it by doing something, in this case fetching the definition via fetchTermDefinition
- * 3. fetchTermDefinition makes a request to the server that handles our JSON database, when the server responds, fetchTermDefinition returns this data.
- * 4. fetchTermDefinition should also take care of any parsing/string manipulation, unless the server does that for us
- * 4. handleMessage takes the return value of fetchTermDefinition and sends it back to popup.js, which is tasked with putting the data on screen
- */
-
-
+ const useAcronymAPI = async (search_term, recipient) => {
+    let sent = chrome.runtime.sendMessage( 
+        {
+            search_term: search_term,
+            recipient: recipient
+        }
+    )
+    sent.then(handleAPISearchResponse, handleError);
+}
+const handleAPISearchResponse = (response) => {
+    
+}
+const handleError = (err) => {
+    console.log(err);
+}
 /**
  * 
  * @param {object {searchTerm: string}} request an object containing a search term and in the future any other information necessary (like filters/categories/specific standards org) to narrow the search
@@ -38,18 +43,24 @@ const handleMessage = (request, sender, sendResponse) => {
  */
 const fetchTermDefinition = async (search_term, page, results_per_page) => {
     
-    ///search_term is sanitized into a format appropriate for the a url to be used in fetch()
-    //someSanitizationFunction(search_term)
+    
     const sanitizedSearchTerm = encodeURIComponent(search_term);
-    //Since we dont have a server yet, I am using the pokemon api as an example.
-     const data = await fetch("https://get-server-prod.herokuapp.com/glossary?term=" + sanitizedSearchTerm + '&results_per_page=' + results_per_page + '&page=' + page) // async functionality example (fetching from pokemon database)
-     const terms = await data.json(); //Wait for data to be jsonified
-     let total_pages = await fetch("https://get-server-prod.herokuapp.com/glossary/searchsize?collection_alias=glossary&search_term=" + sanitizedSearchTerm);
-     total_pages = await total_pages.json();
-     console.log(terms);
-    const responseObj = {
-        total_pages: Math.floor(total_pages.totalElements/3) + 1,
-        results: terms
+    
+    const data = await fetch("https://get-server-prod.herokuapp.com/glossary?term=" + sanitizedSearchTerm + '&results_per_page=' + results_per_page + '&page=' + page) // async functionality example (fetching from pokemon database)
+    const terms = await data.json(); //Wait for data to be jsonified
+    
+    let total_pages = await fetch("https://get-server-prod.herokuapp.com/glossary/searchsize?collection_alias=glossary&search_term=" + sanitizedSearchTerm);
+    
+    total_pages = await total_pages.json();
+    
+    let responseObj = {
+       total_pages: Math.floor(total_pages.totalElements/3) + 1,
+       results: terms
+    }
+    if (!terms || terms.length < 1)
+    {
+        await useAcronymAPI(search_term, 'popup-script');
+        responseObj = {acronymAPI: true};
     }
     //Return data obtained THERE WE GO
     return responseObj;
@@ -67,10 +78,12 @@ const sanitizeSelectedText = (text) => {
 const fetchHighlightDefinition = async (selected_text) => {
     const sanitizedSearchTerm = sanitizeSelectedText(selected_text);
     const data = await fetch("https://get-server-prod.herokuapp.com/glossary?term=" + sanitizedSearchTerm + '&results_per_page=3&page=1');
-    const term = await data.json();
+    const terms = await data.json();
     
-    console.log(term);
-    const responseObj = term;
+    if (!terms || terms.length < 1)
+        useAcronymAPI(search_term, 'content-script');
+    
+    const responseObj = terms;
     
     return responseObj;
 }
@@ -88,3 +101,4 @@ const fetchHighlightDefinition = async (selected_text) => {
 
 //Listens for when popup.js sends a message
 chrome.runtime.onMessage.addListener(handleMessage);
+

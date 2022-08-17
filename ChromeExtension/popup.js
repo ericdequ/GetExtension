@@ -5,6 +5,40 @@ let current_search = null;
 let current_item = null;
 const previous_page = null;
 //Watch this gameplay
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.recipient === "popup-script")
+    {
+        fetchAcronymApi(request.search_term)
+        .then((acronymObj) => {
+            currentItems = acronymObj;;
+            total_pages = 1;
+            current_page = 1;
+            constructPage(current_page, total_pages, currentItems);
+            sendResponse({completed: true})
+        })
+    }
+})
+
+const fetchAcronymApi = async (search_term) => {
+
+    let results = [];
+    let xmlDoc = await fetch('http://acronyms.silmaril.ie/cgi-bin/xaa?api');
+    xmlDoc = await xmlDoc.text();
+    let parser = new DOMParser();
+    xmlDoc = parser.parseFromString(xmlDoc, 'text/xml');
+    let listOfAcronymElements = xmlDoc.getElementsByTagName('found')[0].children;
+    for (let i = 0; i < listOfAcronymElements.length; i++)
+    {
+        let item = listOfAcronymElements[i];
+        let termObj = {};
+        termObj['TITLE'] = search_term;
+        termObj['SOURCE'] = ""
+        termObj['DESCRIPTION'] = item.getElementsByTagName('expan')[0].textContent;
+        termObj['ABBREVIATIONS'] = item.getElementsByTagName('comment')[0].textContent;
+        results.push(termObj);
+    }
+    return results;
+}
 const constructResultsNotFoundComponent = () => {
     document.getElementsByClassName('no-results-wrapper')[0].innerHTML='';
     if (current_page != total_pages || current_item)
@@ -34,8 +68,6 @@ const handleDeployTermPage = (current_term) => {
     }
     //cache previous page, or at least the params that denote the previous page, and provide a page that focuses on term-related info
     //Nevermind the params that denoted the previous page are stored as globals
-    console.log('this runs with the term: ' + current_term.TITLE);
-    console.log(Object.keys(current_term));
 
     const termPage = `
     <div class="term-page">
@@ -130,9 +162,7 @@ const constructPage = (current_page, total_pages, page_items = []) => {
     
     //Once event listeners are instantiated, then focus on pagination
     constructPagination(current_page, total_pages);
-    console.log(currentItems.length);
-    console.log(total_pages);
-    console.log(current_page);
+
     constructResultsNotFoundComponent();
 }
 
@@ -245,6 +275,8 @@ getButton.addEventListener("click", () => {
  */
 //handleResponse
 const handleResponse = async (message) => {
+    if (message.acronymAPI)
+        return;
     total_pages = message.total_pages;
     currentItems = message.results;
 

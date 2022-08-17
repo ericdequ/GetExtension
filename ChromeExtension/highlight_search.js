@@ -3,6 +3,14 @@ let current_page = null;
 let total_pages = null;
 
 //Basically a pocket version of the popup functionality
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.recipient === "content-script")
+  {
+      //Run the code
+  }
+})
+
 let initialSetup = () => {
     const body =  document.getElementsByTagName('body')[0];
     const popupContainer = document.createElement('div');
@@ -22,11 +30,15 @@ let getText = (e) => {
     })
     sent.then(handleResponse, handleError);
 }
+const handleRemoveFakePopup = () => {
+  current_page = null;
+  currentItems = [];
+}
 const navigateDefinitionsPopup = (term) => {
     //animate out contents and animate in new contents
     let popup_element = `
     <div class="grow-please"></div>
-    <div class="teal-background">
+    <div class="teal-background opaque">
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
       <link
@@ -37,17 +49,17 @@ const navigateDefinitionsPopup = (term) => {
         <div class="term-fake-page">
           <div class="ET-logo"></div>
           <!--<image src="images/xmark.png" id="quit-term-page" />-->
-          <div class="term-fake-page-title">${term.TITLE}</div>
-          <div class="term-fake-page-description">
+          <div class="term-fake-page-title fade-in-class">${term.TITLE}</div>
+          <div class="term-fake-page-description fade-in-class">
             ${term.DESCRIPTION && term.DESCRIPTION != "None" ? term.DESCRIPTION : "No Description Available. "}
           </div>
-          <div class="term-fake-page-sources">
+          <div class="term-fake-page-sources fade-in-class">
 
             <div class="term-page-source-list">
               ${term.SOURCE ? term.SOURCE : "N/A"}
             </div>
           </div>
-          <div class="term-fake-page-abbreviations">
+          <div class="term-fake-page-abbreviations fade-in-class">
             <div class="term-fake-page-abbr-header">Abbreviations</div>
             <div class="term-page-abbr-flex">
               <div class="term-page-abbr">${term.ABBREVIATIONS ? term.ABBREVIATIONS : "N/A"}</div>
@@ -63,16 +75,14 @@ const navigateDefinitionsPopup = (term) => {
     </div>
     `
     document.getElementsByClassName("fake-popup-container")[0].innerHTML = popup_element;
-    const handleRemovePopup = (e) => {
+    const beginRemovePopup = (e) => {
         if ((document.getElementsByClassName('teal-background')[0] && document.getElementsByClassName('teal-background')[0].contains(e.target)) || (document.getElementsByClassName('teal-background-2')[0] && document.getElementsByClassName('teal-background-2')[0].contains(e.target))){
             // Do nothing
         } 
         else{
             // Clicked outside the box
-            document.getElementsByClassName('fake-popup-container')[0].innerHTML="";
-            window.removeEventListener('mouseup', handleRemovePopup);
-            current_page = null;
-            currentItems = [];
+            window.removeEventListener('mouseup', beginRemovePopup);
+            handleRemoveFakePopup();
         }
     }
     const handleNextPage = (e) => {
@@ -112,7 +122,7 @@ const constructDefinitionsPopup = (term) => {
     {
         popup_element = `
             <div class="grow-please"></div>
-            <div class="teal-background">
+            <div class="teal-background fade-in-up-class">
               <link rel="preconnect" href="https://fonts.googleapis.com" />
               <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
               <link
@@ -123,17 +133,17 @@ const constructDefinitionsPopup = (term) => {
                 <div class="term-fake-page">
                   <!--<image src="images/xmark.png" id="quit-term-page" />-->
                   <div class="ET-logo"></div>
-                  <div class="term-fake-page-title">${term.TITLE}</div>
-                  <div class="term-fake-page-description">
+                  <div class="term-fake-page-title fade-in-up-class">${term.TITLE}</div>
+                  <div class="term-fake-page-description fade-in-up-class">
                     ${term.DESCRIPTION && term.DESCRIPTION != "None" ? term.DESCRIPTION : "No Description Available. "}
                   </div>
-                  <div class="term-fake-page-sources">
+                  <div class="term-fake-page-sources fade-in-up-class">
 
                     <div class="term-page-source-list">
                       ${term.SOURCE ? term.SOURCE : "N/A"}
                     </div>
                   </div>
-                  <div class="term-fake-page-abbreviations">
+                  <div class="term-fake-page-abbreviations fade-in-up-class">
                     <div class="term-fake-page-abbr-header">Abbreviations</div>
                     <div class="term-page-abbr-flex">
                       <div class="term-page-abbr">${term.ABBREVIATIONS ? term.ABBREVIATIONS : "N/A"}</div>
@@ -151,14 +161,14 @@ const constructDefinitionsPopup = (term) => {
     }
 
     document.getElementsByClassName("fake-popup-container")[0].innerHTML = popup_element;
-    const handleRemovePopup = (e) => {
+    const beginRemovePopup = (e) => {
         if ((document.getElementsByClassName('teal-background')[0] && document.getElementsByClassName('teal-background')[0].contains(e.target)) || (document.getElementsByClassName('teal-background-2')[0] && document.getElementsByClassName('teal-background-2')[0].contains(e.target))){
             // Do nothing
         } 
         else{
             // Clicked outside the box
             document.getElementsByClassName('fake-popup-container')[0].innerHTML="";
-            window.removeEventListener('mouseup', handleRemovePopup);
+            window.removeEventListener('mouseup', beginRemovePopup);
             current_page = null;
             currentItems = [];
         }

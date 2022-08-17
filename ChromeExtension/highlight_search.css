@@ -1,3 +1,6 @@
+.opaque {
+  opacity: 1 !important;
+}
 .ET-logo {
   background-image: url('chrome-extension://__MSG_@@extension_id__/images/ETSVG.png');
   background-size: cover;
@@ -25,10 +28,16 @@
 * {
     font-family: "Inter", sans-serif;
   }
+  .fade-in-up-class {
+    animation-name: fadeInUp;
+  }
   .teal-background-2 {
     background-color: rgb(40, 182, 230);
     padding: 10px;
     border-radius: 5px;
+    animation-duration: 0.7s;
+    animation-delay: 0s;
+    animation-fill-mode: forwards;
   }
   .white-overlay-2 {
     background-color: white;
@@ -45,6 +54,7 @@
     padding: 10px;
   }
   .teal-background {
+    opacity: 0;
     width: 400px;
     height: 520px;
     background-color: rgb(40, 182, 230);
@@ -52,6 +62,9 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    animation-duration: 0.3s;
+    animation-delay: 0s;
+    animation-fill-mode: forwards;
   }
   .pagination-group {
     margin-top: 5px;
@@ -62,6 +75,7 @@
     justify-content: center;
     height: 50px;
     column-gap: 15px;
+    
   }
   .white-overlay {
     background-color: white;
@@ -80,22 +94,31 @@
     overflow-y: auto;
   }
   .term-fake-page-title {
+    opacity: 0;
     color: black;
     margin-top: 10px;
     margin-bottom: 0px;
     font-size: 32px;
     font-weight: bold;
     padding: 10px;
+    animation-duration: 0.3s;
+    animation-delay: 0.3s;
+    animation-fill-mode: forwards;
   }
   
   .term-fake-page-description {
+    opacity: 0;
     font-size: 14px;
     color: black;
     font-weight: 500;
     padding: 10px;
     padding-right: 50px;
+    animation-duration: 0.3s;
+    animation-delay: 0.4s;
+    animation-fill-mode: forwards;
   }
   .term-fake-page-sources {
+    opacity: 0;
     font-size: 14px;
     font-weight: 400;
     display: flex;
@@ -106,12 +129,19 @@
     text-decoration: underline;
     color: blue;
     font-weight: light;
+    animation-duration: 0.3s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
   }
   .term-fake-page-abbreviations {
+    opacity: 0;
     margin-top: 20px;
     width: 100%;
     font-weight: bold;
     font-size: 14px;
+    animation-duration: 0.3s;
+    animation-delay: 0.6s;
+    animation-fill-mode: forwards;
   }
   .term-fake-page-abbr-header {
     color: black;
@@ -163,3 +193,33 @@
     border-radius: 5px;
   }
   
+  @keyframes fadeInUp {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0%);
+      opacity: 1;
+    }
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .fade-in-class {
+    animation-name: fadeIn;
+  }
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
