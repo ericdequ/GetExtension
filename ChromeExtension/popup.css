@@ -1,3 +1,4 @@
+
 button {
   height: 40px;
   width: auto;
@@ -12,7 +13,7 @@ button {
   background-color: rgb(79, 173, 204);
 }
 body {
-  width: 300px;
+  width: 350px;
   min-height: 300px;
   max-height: 600px;
   overflow: auto;
@@ -22,46 +23,195 @@ body {
 button.current {
   box-shadow: 0 0 0 2px white, 0 0 0 4px black;
 }
+
+
 .term-result-window {
+  background-color: #1a88ad;
   padding: 10px;
   width: 80%;
-  height: auto;
+  height: 70px;
   display: flex;
   flex-direction: column;
-  background-color: rgb(79, 173, 204);
+  color: white;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px grey;
 }
 .term-result {
-  font-size: 14px;
-  font-weight: bold;
-  color: black;
+  font-size: 16px;
+  font-weight: light;
+  color: white;
 }
 .term-definition {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: light;
-  color: #a9a9a9;
+  color: white;
+  padding-top: 5px;
   padding-bottom: 5px;
 }
 .term-standard-organization {
-  font-size: 10px;
-  font-weight: bold;
-  color: black;
+  font-size: 12px;
+  font-weight: light;
+  color: white;
+  margin-top: 5px;
 }
 .no-results-header {
   margin-bottom: 2px;
   margin: 0px;
-  background-color: rgb(79, 173, 204);
 }
 hr {
-  width: 90%;
-  border: none;
-  background-color: black;
-  height: 1px;
+    width: 90%;
+    border: none;
+    background-color: black;
+    height: 1px;
 }
 .result-wrapper {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+    min-height: 300px;
+}
+.pagination_element {
+    display: flex;
+    flex-direction: row;
+    column-gap: 15px;
+    font-size: 15px;
+    justify-content: center;
+    align-items: center;
+  }
+  .flex-center {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    justify-self: flex-end;
+  }
+  .pagination_page {
+    display: flex;
+    flex-direction: row;
+    column-gap: 5px;
+  }
+  .chevron_pagi {
+    height: 20px;
+  }
+  .slash {
+    font-size: 30px;
+  }
+  #total_pages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    min-width: 50px;
+    background-color: grey;
+    border-radius: 5px;
+    border: 1px solid white;
+    color: white;
+  }
+  input#current_page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 50px;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid black;
+    text-align: center;
+    color: black;
+    padding: 0px;
+  }
+.term-page {
   display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 100%;
   width: 100%;
+  transition: top 2s ease 0s; /* only transition top property */
+}
+.term-page.active {
+
+}
+.term-page-title {
+  padding-left: 10px;
+  padding-right: 45px;
+  font-size: 30px;
+  color: white;
+  font-weight: light;
+}
+.term-page-description {
+  margin-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 12px;
+  color: white;
+  font-weight: normal;
+}
+.term-page-sources {
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 16px;
+  color: white;
+  margin-top: 5px;
+}
+.term-page-abbr-header {
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+}
+.term-page-abbreviations {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  font-size: 16px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.term-page-abbr-flex {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  row-gap: 10px;
+  column-gap: 10px;
+}
+.term-page-abbr {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: white;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  width: auto;
+  display: flex;
+  color: black;
+}
+.term-page-source-header{
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+}
+.term-page-source-list {
+  font-size: 12px;
+  font-weight: normal;
+  margin-top: 5px;
+}
+#quit-term-page {
+  margin-top: 3px;
+  margin-right: 20px;
+  position: absolute;
+  align-self: flex-end;
+  justify-content: flex-end;
+  width: 20px;
+  height: auto;
+}
+.no-results-wrapper {
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: rgb(79, 173, 204);
+  margin-top: 10px;
 }

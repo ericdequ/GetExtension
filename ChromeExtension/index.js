@@ -5,7 +5,6 @@ const OnlineTermDefinition = async (search_term) => {
 
     ///search_term is sanitized into a format appropriate for the a url to be used in fetch()
     //someSanitizationFunction(search_term)
-    console.log("EVEN MORE EPIC");
     const page = 1;
     const sanitizedSearchTerm = encodeURIComponent(search_term);
     //Since we dont have a server yet, I am using the pokemon api as an example.
