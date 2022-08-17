@@ -103,7 +103,7 @@ const navigateDefinitionsPopup = (term) => {
     }
     document.getElementById('prev-page-button').addEventListener('click', handlePrevPage);
     document.getElementById('next-page-button').addEventListener('click', handleNextPage);
-    window.addEventListener('mouseup', handleRemovePopup);
+    window.addEventListener('mouseup', beginRemovePopup);
 }
 const constructDefinitionsPopup = (term) => {
     let popup_element;
@@ -168,10 +168,10 @@ const constructDefinitionsPopup = (term) => {
         } 
         else{
             // Clicked outside the box
-            document.getElementsByClassName('fake-popup-container')[0].innerHTML="";
             window.removeEventListener('mouseup', beginRemovePopup);
             current_page = null;
             currentItems = [];
+            document.getElementsByClassName('fake-popup-container')[0].innerHTML="";
         }
     }
     const handleNextPage = (e) => {
@@ -194,7 +194,7 @@ const constructDefinitionsPopup = (term) => {
         document.getElementById('prev-page-button').addEventListener('click', handlePrevPage);
         document.getElementById('next-page-button').addEventListener('click', handleNextPage);
     }
-    window.addEventListener('mouseup', handleRemovePopup);
+    window.addEventListener('mouseup', beginRemovePopup);
 }
 
 const handleResponse = (termObj) => {
